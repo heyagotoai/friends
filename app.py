@@ -182,7 +182,6 @@ fig.update_layout(
     yaxis_title='Liczba osób',
 )
 st.plotly_chart(fig)
-
 # Utworzenie wykresu radarowego dla profilu grupy
 categories = ['Wiek', 'Wykształcenie', 'Zwierzęta', 'Miejsce', 'Płeć']
 fig_radar = go.Figure()
@@ -197,3 +196,4 @@ fig_radar.add_trace(go.Scatterpolar(
     fill='toself',
     name='Profil grupy'
 ))
+
