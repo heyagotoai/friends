@@ -11,24 +11,31 @@ DATA = 'welcome_survey_simple_v2.csv'
 
 CLUSTER_NAMES_AND_DESCRIPTIONS = 'welcome_survey_cluster_names_and_descriptions_v2.json'
 
+# --- NAWIGACJA I STRONA STARTOWA ---
+with st.sidebar:
+    st.header('Nawigacja')
+    page = st.radio('Wybierz stronę', ['Strona powitalna', 'Znajdź znajomych'])
 
-@st.cache_data
-def get_model():
-    return load_model(MODEL_NAME)
+# logo
+st.image('logo.png', width=150)
 
-@st.cache_data
-def get_cluster_names_and_descriptions():
-    with open(CLUSTER_NAMES_AND_DESCRIPTIONS, 'r', encoding='utf-8') as f:
-        return json.loads(f.read())
+# Strona startowa z opisem aplikacji
+if page == 'Strona powitalna':
+    st.title('Find Friends')
+    st.markdown("""
+    **Find Friends** to aplikacja, która ułatwia poznawanie osób o podobnych zainteresowaniach i cechach.
 
-@st.cache_data
-def get_all_participants():
-    model = get_model()
-    all_df = pd.read_csv(DATA, sep=';')
-    df_with_clusters = predict_model(model, data=all_df)
+    **Jak to działa?**
+    1. W zakładce **Znajdź znajomych** wypełniasz krótki formularz dotyczący wieku, wykształcenia, preferencji dotyczących zwierząt i miejsc oraz płci.
+    2. Twoje odpowiedzi trafiają do modelu uczenia maszynowego wykorzystującego klasteryzację – algorytm grupujący osoby o podobnych profilach bez konieczności wcześniejszego oznaczania danych.
+    3. Model porównuje Twój profil z odpowiedziami innych uczestników i przypisuje Cię do klastra, w którym znajdują się osoby najbardziej podobne do Ciebie.
+    4. Otrzymasz nazwę i opis swojej grupy, statystyki dotyczące jej członków oraz listę potencjalnych znajomych.
 
-    return df_with_clusters
+    Przejdź do zakładki **Znajdź znajomych** po lewej stronie, aby rozpocząć!
+    """)
+    st.stop()
 
+# --- FORMULARZ DLA STRONY „Znajdź znajomych” ---
 with st.sidebar:
     st.header('Powiedz nam coś o sobie')
     st.markdown('Pomożemy Ci znaleźć osoby, które mają podobne zainteresowania')
@@ -47,6 +54,23 @@ with st.sidebar:
             'gender': gender
         }
     ])
+
+@st.cache_data
+def get_model():
+    return load_model(MODEL_NAME)
+
+@st.cache_data
+def get_cluster_names_and_descriptions():
+    with open(CLUSTER_NAMES_AND_DESCRIPTIONS, 'r', encoding='utf-8') as f:
+        return json.loads(f.read())
+
+@st.cache_data
+def get_all_participants():
+    model = get_model()
+    all_df = pd.read_csv(DATA, sep=';')
+    df_with_clusters = predict_model(model, data=all_df)
+
+    return df_with_clusters
 
 model = get_model()
 all_df = get_all_participants()
