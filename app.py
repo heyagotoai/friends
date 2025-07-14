@@ -23,18 +23,18 @@ if page == 'Strona powitalna':
         st.image('logo.png', width=150)
     with col2:
         st.title('Find Friends')
-        st.markdown("""
-        **Find Friends** to aplikacja, która ułatwia poznawanie osób o podobnych zainteresowaniach i cechach.
+    st.markdown("""
+    **Find Friends** to aplikacja, która ułatwia poznawanie osób o podobnych zainteresowaniach i cechach.
 
-        **Jak to działa?**
-        1. W zakładce **Znajdź znajomych** wypełniasz krótki formularz dotyczący wieku, wykształcenia, preferencji dotyczących zwierząt i miejsc oraz płci.
-        2. Twoje odpowiedzi trafiają do modelu uczenia maszynowego wykorzystującego klasteryzację – algorytm grupujący osoby o podobnych profilach bez konieczności wcześniejszego oznaczania danych.
-        3. Model porównuje Twój profil z odpowiedziami innych uczestników i przypisuje Cię do klastra, w którym znajdują się osoby najbardziej podobne do Ciebie.
-        4. Otrzymasz nazwę i opis swojej grupy, statystyki dotyczące jej członków oraz listę potencjalnych znajomych.
+    **Jak to działa?**
+    1. W zakładce **Znajdź znajomych** wypełniasz krótki formularz dotyczący wieku, wykształcenia, preferencji dotyczących zwierząt i miejsc oraz płci.
+    2. Twoje odpowiedzi trafiają do modelu uczenia maszynowego wykorzystującego klasteryzację – algorytm grupujący osoby o podobnych profilach bez konieczności wcześniejszego oznaczania danych.
+    3. Model porównuje Twój profil z odpowiedziami innych uczestników i przypisuje Cię do klastra, w którym znajdują się osoby najbardziej podobne do Ciebie.
+    4. Otrzymasz nazwę i opis swojej grupy, statystyki dotyczące jej członków oraz listę potencjalnych znajomych.
 
-        Przejdź do zakładki **Znajdź znajomych** po lewej stronie, aby rozpocząć!
-        """)
-        st.stop()
+    Przejdź do zakładki **Znajdź znajomych** po lewej stronie, aby rozpocząć!
+    """)
+    st.stop()
 
 # --- FORMULARZ DLA STRONY „Znajdź znajomych” ---
 with st.sidebar:
